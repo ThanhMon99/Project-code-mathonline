@@ -25,7 +25,14 @@ getCurURL();
         <ul class="sidebar-menu" id="nav-accordion">
             <p class="centered"><a href="profile.php"><img src="Form/img/pro.png" class="img-circle" width="80"></a></p>
             <h5 class="centered">Hello <?php echo $_SESSION['username']; ?></h5>
-            
+            <?php if($_SESSION['role'] == 'Staff'){ ?>
+              <li>
+                <a <?php if(getCurURL() == 'http://localhost/ProjectTest/Dashboard.php') {echo 'class="active"';} ?> href="Dashboard.php">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>     
+            <?php } ?>
                 <li>
                 <a <?php if(getCurURL() == 'http://localhost/ProjectTest/profile.php') {echo 'class="active"';} ?> href="profile.php">
                     <i class="fa fa-id-card"></i>

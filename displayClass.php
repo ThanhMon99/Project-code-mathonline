@@ -14,6 +14,9 @@ $_SESSION['Class_id'] = $class_id;
 $stmt = $conn->prepare("select * from Class where Class_id = $class_id");
 $stmt->execute();
 $result = $stmt->fetchAll();
+
+
+
 ?>
 <html lang="en"> 
     <?php require_once('Form/head_section.php') ?>  
@@ -38,42 +41,82 @@ $result = $stmt->fetchAll();
                     $stmt1->execute();
                     $result1 = $stmt1->fetchAll();
                     ?>
-                    <h1><?php echo $row['title']; ?></h1></div></ br>
+                    <h1><?php echo $row['title']; ?></h1></div></br>
                 <i> Create Date : <?php echo $row['time']; ?></i>
                 <hr  width="30%"  align="left" />
                 <p><?php echo $row['content']; ?></p>
                 <hr  width="30%"  align="left" />
                 <h4>#File Upload :</h4>
+                <table class='table'>
+                    <thead>
+                    <th>
+                         Item   
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                    </thead>
+                   
                 <?php
                 foreach ($result1 as $row1) {
                     if ($row1['type'] == 'image') {
                         ?>
+                    <tr>
+                        <td>
                         <a href="download.php?file_id=<?php echo $row1['upload_id'] ?>"><img src="<?php echo $row1['fileUrl']; ?>" alt="" width="300" height="300"/></a>
-
-                        </br>
+                      </td>
+                        <td>
+                    <button  class="btn btn-info"><a href="deletefile.php?id=<?php echo $row1['upload_id'] ?>" onclick="confirm('Want to delete?'); ">Delete</a></button>
+                     </td>
+        </tr>
             <?php
         } else {
             ?>
-                        <a href="download.php?file_id=<?php echo $row1['upload_id'] ?>"><p><?php echo $row1['fileName']; ?></p></a>
-                        </br>
+                 
+                    <tr>
+                        <td>
+                        <a href="download.php?file_id=<?php echo $row1['upload_id'] ?>"><p style="display: inline-block;"><?php echo $row1['fileName']; ?></p></a>
+                        </td>
+                        <td>
+                       <button  class="btn btn-info"> <a href="deletefile.php?id=<?php echo $row1['upload_id'] ?>" onclick="confirm('Want to delete?'); ">Delete</a></button>
+                                     </td>
+        </tr>
 
         <?php
         }
     }
-    echo '<h4>#Video Upload :</h4>';
+    echo '</table>';
+    echo '<h4>#Video Upload :</h4>'
+    . ' <table class="table">
+                    <thead>
+                    <th>
+                         Item   
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                    </thead>';
     $stmt2 = $conn->prepare("select * from video_upload where Class_id = $class_id");
     $stmt2->execute();
     $result2 = $stmt2->fetchAll();
     foreach ($result2 as $row2) {
         ?> 
+        <tr>
+                        <td>
                     <video width="320" height="240" controls>
                         <source src="<?php echo $row2['videoUrl']; ?>" type="video/mp4">
                         <source src="<?php echo $row2['videoUrl']; ?>" type="video/mp3">
                         <source src="<?php echo $row2['videoUrl']; ?>" type="video/wma">
                         Your browser does not support the video tag.
                     </video>
+                        </td>
+                        <td>
+                        <button  class="btn btn-info"><a href="deletevideo.php?id=<?php echo $row2['video_id'] ?>" onclick="confirm('Want to delete?'); ">Delete</a></button>
+                        </td>
+        </tr>
                 <?php }
             } ?>
+                </table>
             </br>
             <form method="POST" id="comment_form">
                 <div class="form-group">

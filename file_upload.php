@@ -94,6 +94,7 @@ if (isset($_POST['submit'])) {
         }
         if ($i == 0) {
             $back = "displayClass.php?id={$class_id}";
+            echo "<script type='text/javascript'>alert('Uploaded');</script>";
             echo "<div class='alert alert-success'><b>All file has been uploaded</b><a href='{$back}'><b>Back</b></a><br /></div>";
         } else {
             echo "<div class='alert alert-danger'><b>Error uploading please upload againt</b> <br /></div>";

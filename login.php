@@ -33,6 +33,8 @@ if (isset($_POST['txtUsername'])) {
     $_SESSION['username'] = $username;
     $_SESSION['id'] = $id;
     $_SESSION['fullname'] = $fullname;
+    $statement = $conn->prepare("INSERT INTO login_details (user_id) VALUES ('{$id}')");
+    $statement->execute();
 //    $statement = $conn->prepare("INSERT INTO login_details (user_id) VALUES ('{$id}')");
 //    $statement->execute();
 //    $_SESSION['login_details_id'] = $conn->lastInsertId();

@@ -331,11 +331,11 @@ include('connect.php');
      $money = $money + $r['Budget'];
      $stID = $_SESSION['Student_id'];
      $stmt = $conn->prepare("Update student set Budget = '$money' where Student_id = '$stID'");
-     $stmt1 = $conn->prepare("INSERT INTO `payment` (`St_id`, `Price`, `Time`) VALUES ('$stID' , '$money', now)");
+     $stmt1 = $conn->prepare("INSERT INTO `payment` (`St_id`, `Price`, `Time`) VALUES ('$stID' , '$money', now())");
      $pdoResult2 = $stmt1->execute();
     $pdoResult1 = $stmt->execute();
     
-    if ($pdoResult1) {
+    if ($pdoResult1 && $pdoResult2) {
             echo "<div class='alert alert-success'><b>Money added</b></a><br /></div>";
              $URL = "http://localhost/ProjectTest/UnlockForStudy.php";
             echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
