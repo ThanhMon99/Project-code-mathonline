@@ -64,6 +64,7 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC);
                     <option value="Tutor">Tutor</option>
                     <option value="Student">Student</option>
                 </select>
+                
                 <div class="form-group">
                     </br></br>
                 <div  class="col-lg-offset-2 col-lg-10">
@@ -88,7 +89,7 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($pdoResult) {
 //            echo "<div class='alert alert-success'><a href= 'profile.php'><b>Successfully   </b></a></div>";
-            $URL = "http://localhost/ASMtest/profile.php";
+            $URL = "http://localhost/ProjectTest/profile.php";
                 echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
                 echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
         } else

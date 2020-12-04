@@ -51,6 +51,8 @@ $result = $statement->fetchAll();
         <div>
             <hr  width="100%" align="left" />
             <h2 align="left">Another user Info</h2>
+            <button class="btn btn-info" ><a href="register_1.php">Add new teacher</a></button>
+            </br>    </br>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th width="30%">Username</th>
